@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Matching Game</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <main class="game-container">
+
+        <a href="index.html" class="back-link">
+            ← Back to Games
+        </a>
+
+        <h1>Matching Game</h1>
+
+        <p class="instructions">
+            Find the two pictures that match.
+        </p>
+
+
+        <div class="status-bar">
+
+            <p id="levelDisplay" class="level-display">
+                Level 1
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span class="stat-label">
+                        Pairs found
+                    </span>
+
+                    <span
+                        id="pairsCounter"
+                        class="stat-value"
+                        aria-live="polite"
+                    >
+                        0 of 3
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="message"
+            class="message"
+            aria-live="polite"
+        >
+            Choose a card to begin.
+        </div>
+
+
+        <div
+            id="gameBoard"
+            class="game-board">
+        </div>
+
+
+        <div class="button-container">
+
+            <button
+                id="nextLevelButton"
+                class="next-level-button"
+                hidden
+            >
+                Next Level
+            </button>
+
+
+            <button
+                id="restartButton"
+                class="restart-button"
+            >
+                Start Over
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="matching.js"></script>
+
+</body>
+</html>

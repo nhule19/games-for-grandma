@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Color Sorting</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <main class="game-container sorting-container">
+
+        <a
+            href="index.html"
+            class="back-link"
+        >
+            ← Back to Games
+        </a>
+
+
+        <h1>Color Sorting</h1>
+
+
+        <p class="instructions">
+            Choose a color, then place it in the matching box.
+        </p>
+
+
+        <div class="status-bar">
+
+            <p
+                id="sortingLevelDisplay"
+                class="level-display"
+            >
+                Level 1
+            </p>
+
+
+            <div class="stats">
+
+                <div class="stat">
+
+                    <span class="stat-label">
+                        Sorted
+                    </span>
+
+                    <span
+                        id="sortedCounter"
+                        class="stat-value"
+                        aria-live="polite"
+                    >
+                        0 of 6
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="sortingMessage"
+            class="message"
+            aria-live="polite"
+        >
+            Choose a color.
+        </div>
+
+
+        <div
+            id="colorItems"
+            class="color-items"
+        >
+        </div>
+
+
+        <p class="sorting-label">
+            Choose the matching box:
+        </p>
+
+
+        <div
+            id="colorBins"
+            class="color-bins"
+        >
+        </div>
+
+
+        <div class="button-container">
+
+            <button
+                id="sortingNextButton"
+                class="next-level-button"
+                hidden
+            >
+                Next Level
+            </button>
+
+
+            <button
+                id="sortingRestartButton"
+                class="restart-button"
+            >
+                Start Over
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="sorting.js"></script>
+
+</body>
+</html>
