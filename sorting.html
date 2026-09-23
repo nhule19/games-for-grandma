@@ -8,7 +8,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Color Sorting</title>
+    <title>Object Sorting</title>
 
     <link
         rel="stylesheet"
@@ -20,102 +20,190 @@
 
     <main class="game-container sorting-container">
 
-        <a
-            href="index.html"
-            class="back-link"
-        >
+        <a href="index.html" class="back-link">
             ← Back to Games
         </a>
 
-
-        <h1>Color Sorting</h1>
-
+        <h1>Object Sorting</h1>
 
         <p class="instructions">
-            Choose a color, then place it in the matching box.
+            Choose a theme, then sort the objects into the matching groups.
         </p>
 
 
-        <div class="status-bar">
+        <!-- =========================
+             THEME SELECTION
+        ========================== -->
 
-            <p
-                id="sortingLevelDisplay"
-                class="level-display"
-            >
-                Level 1
-            </p>
+        <section id="themeSelection">
+
+            <div class="message message-target">
+                <span class="target-title">
+                    What would you like to sort?
+                </span>
+
+                <span class="target-emoji">
+                    🍎 🐶 👕
+                </span>
+
+                <span class="target-hint">
+                    Choose one of the themes below.
+                </span>
+            </div>
 
 
-            <div class="stats">
+            <div class="theme-options">
 
-                <div class="stat">
-
-                    <span class="stat-label">
-                        Sorted
+                <button
+                    class="theme-button"
+                    data-theme="food"
+                >
+                    <span class="theme-emoji">
+                        🍎
                     </span>
 
-                    <span
-                        id="sortedCounter"
-                        class="stat-value"
-                        aria-live="polite"
-                    >
-                        0 of 6
+                    <span class="theme-name">
+                        Food
                     </span>
+
+                    <span class="theme-description">
+                        Fruits and Vegetables
+                    </span>
+                </button>
+
+
+                <button
+                    class="theme-button"
+                    data-theme="animals"
+                >
+                    <span class="theme-emoji">
+                        🐶
+                    </span>
+
+                    <span class="theme-name">
+                        Animals
+                    </span>
+
+                    <span class="theme-description">
+                        Pets and Farm Animals
+                    </span>
+                </button>
+
+
+                <button
+                    class="theme-button"
+                    data-theme="clothing"
+                >
+                    <span class="theme-emoji">
+                        👕
+                    </span>
+
+                    <span class="theme-name">
+                        Clothing
+                    </span>
+
+                    <span class="theme-description">
+                        Tops and Bottoms
+                    </span>
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             SORTING GAME
+        ========================== -->
+
+        <section
+            id="sortingGame"
+            hidden
+        >
+
+            <div class="status-bar">
+
+                <p
+                    id="sortingThemeDisplay"
+                    class="level-display"
+                >
+                    Food
+                </p>
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        <span class="stat-label">
+                            Sorted
+                        </span>
+
+                        <span
+                            id="sortedCounter"
+                            class="stat-value"
+                            aria-live="polite"
+                        >
+                            0 of 6
+                        </span>
+
+                    </div>
 
                 </div>
 
             </div>
 
-        </div>
 
-
-        <div
-            id="sortingMessage"
-            class="message"
-            aria-live="polite"
-        >
-            Choose a color.
-        </div>
-
-
-        <div
-            id="colorItems"
-            class="color-items"
-        >
-        </div>
-
-
-        <p class="sorting-label">
-            Choose the matching box:
-        </p>
-
-
-        <div
-            id="colorBins"
-            class="color-bins"
-        >
-        </div>
-
-
-        <div class="button-container">
-
-            <button
-                id="sortingNextButton"
-                class="next-level-button"
-                hidden
+            <div
+                id="sortingMessage"
+                class="message"
+                aria-live="polite"
             >
-                Next Level
-            </button>
+                Choose an object.
+            </div>
 
 
-            <button
-                id="sortingRestartButton"
-                class="restart-button"
+            <!-- Objects appear here -->
+
+            <div
+                id="objectItems"
+                class="object-items"
             >
-                Start Over
-            </button>
+            </div>
 
-        </div>
+
+            <p class="sorting-label">
+                Where does it belong?
+            </p>
+
+
+            <!-- Categories appear here -->
+
+            <div
+                id="objectBins"
+                class="object-bins"
+            >
+            </div>
+
+
+            <div class="button-container">
+
+                <button
+                    id="changeThemeButton"
+                    class="restart-button"
+                >
+                    Change Theme
+                </button>
+
+                <button
+                    id="sortingRestartButton"
+                    class="restart-button"
+                >
+                    Start Over
+                </button>
+
+            </div>
+
+        </section>
 
     </main>
 

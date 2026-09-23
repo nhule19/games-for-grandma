@@ -1,114 +1,215 @@
-const colorItems =
-    document.getElementById(
-        "colorItems"
-    );
+const themeSelection =
+    document.getElementById("themeSelection");
 
-const colorBins =
-    document.getElementById(
-        "colorBins"
-    );
+const sortingGame =
+    document.getElementById("sortingGame");
+
+const objectItems =
+    document.getElementById("objectItems");
+
+const objectBins =
+    document.getElementById("objectBins");
 
 const sortingMessage =
-    document.getElementById(
-        "sortingMessage"
-    );
+    document.getElementById("sortingMessage");
 
-const sortingLevelDisplay =
-    document.getElementById(
-        "sortingLevelDisplay"
-    );
+const sortingThemeDisplay =
+    document.getElementById("sortingThemeDisplay");
 
 const sortedCounter =
-    document.getElementById(
-        "sortedCounter"
-    );
-
-const sortingNextButton =
-    document.getElementById(
-        "sortingNextButton"
-    );
+    document.getElementById("sortedCounter");
 
 const sortingRestartButton =
-    document.getElementById(
-        "sortingRestartButton"
-    );
+    document.getElementById("sortingRestartButton");
+
+const changeThemeButton =
+    document.getElementById("changeThemeButton");
 
 
-const colors = {
+/* ========================================
+   THEMES
+======================================== */
 
-    red: {
-        label: "Red",
-        hex: "#e85d5d"
+const themes = {
+
+    food: {
+
+        name: "Food",
+
+        categories: {
+
+            fruit: {
+                name: "Fruit",
+                emoji: "🧺"
+            },
+
+            vegetable: {
+                name: "Vegetables",
+                emoji: "🥗"
+            }
+
+        },
+
+        items: [
+
+            {
+                name: "Apple",
+                emoji: "🍎",
+                category: "fruit"
+            },
+
+            {
+                name: "Banana",
+                emoji: "🍌",
+                category: "fruit"
+            },
+
+            {
+                name: "Orange",
+                emoji: "🍊",
+                category: "fruit"
+            },
+
+            {
+                name: "Carrot",
+                emoji: "🥕",
+                category: "vegetable"
+            },
+
+            {
+                name: "Broccoli",
+                emoji: "🥦",
+                category: "vegetable"
+            },
+
+            {
+                name: "Corn",
+                emoji: "🌽",
+                category: "vegetable"
+            }
+
+        ]
+
     },
 
-    blue: {
-        label: "Blue",
-        hex: "#5576e6"
+
+    animals: {
+
+        name: "Animals",
+
+        categories: {
+
+            pet: {
+                name: "Pets",
+                emoji: "🐶"
+            },
+
+            farm: {
+                name: "Farm Animals",
+                emoji: "🐄"
+            }
+
+        },
+
+        items: [
+
+            {
+                name: "Dog",
+                emoji: "🐶",
+                category: "pet"
+            },
+
+            {
+                name: "Cat",
+                emoji: "🐱",
+                category: "pet"
+            },
+
+            {
+                name: "Rabbit",
+                emoji: "🐰",
+                category: "pet"
+            },
+
+            {
+                name: "Cow",
+                emoji: "🐄",
+                category: "farm"
+            },
+
+            {
+                name: "Pig",
+                emoji: "🐷",
+                category: "farm"
+            },
+
+            {
+                name: "Chicken",
+                emoji: "🐔",
+                category: "farm"
+            }
+
+        ]
+
     },
 
-    yellow: {
-        label: "Yellow",
-        hex: "#f2c84b"
-    },
 
-    green: {
-        label: "Green",
-        hex: "#55a86b"
+    clothing: {
+
+        name: "Clothing",
+
+        categories: {
+
+            top: {
+                name: "Tops",
+                emoji: "👕"
+            },
+
+            bottom: {
+                name: "Bottoms",
+                emoji: "👖"
+            }
+
+        },
+
+        items: [
+
+            {
+                name: "T-Shirt",
+                emoji: "👕",
+                category: "top"
+            },
+
+            {
+                name: "Coat",
+                emoji: "🧥",
+                category: "top"
+            },
+
+            {
+                name: "Jeans",
+                emoji: "👖",
+                category: "bottom"
+            },
+
+            {
+                name: "Shorts",
+                emoji: "🩳",
+                category: "bottom"
+            }
+
+        ]
+
     }
 
 };
 
 
-const levels = [
+/* ========================================
+   GAME VARIABLES
+======================================== */
 
-    {
-        colors: [
-            "red",
-            "blue"
-        ],
-
-        copies: 3
-    },
-
-
-    {
-        colors: [
-            "red",
-            "blue",
-            "yellow"
-        ],
-
-        copies: 3
-    },
-
-
-    {
-        colors: [
-            "red",
-            "blue",
-            "yellow",
-            "green"
-        ],
-
-        copies: 3
-    },
-
-
-    {
-        colors: [
-            "red",
-            "blue",
-            "yellow",
-            "green"
-        ],
-
-        copies: 4
-    }
-
-];
-
-
-let currentLevel = 0;
+let currentTheme = null;
 
 let selectedItem = null;
 
@@ -117,10 +218,13 @@ let sortedCount = 0;
 let totalItems = 0;
 
 
+/* ========================================
+   SHUFFLE
+======================================== */
+
 function shuffle(array) {
 
     const copy = [...array];
-
 
     for (
         let i = copy.length - 1;
@@ -130,10 +234,8 @@ function shuffle(array) {
 
         const randomIndex =
             Math.floor(
-                Math.random() *
-                (i + 1)
+                Math.random() * (i + 1)
             );
-
 
         [
             copy[i],
@@ -142,302 +244,404 @@ function shuffle(array) {
             copy[randomIndex],
             copy[i]
         ];
-    }
 
+    }
 
     return copy;
 }
 
 
-function setSortingMessage(
-    text,
-    tone
-) {
+/* ========================================
+   MESSAGE
+======================================== */
 
-    sortingMessage.textContent =
-        text;
+function setSortingMessage(text, tone) {
 
+    sortingMessage.textContent = text;
 
     sortingMessage.classList.remove(
         "message-success",
         "message-retry"
     );
 
-
     if (tone) {
 
         sortingMessage.classList.add(
             tone
         );
+
     }
+
 }
 
 
+/* ========================================
+   THEME BUTTONS
+======================================== */
+
+document
+    .querySelectorAll(".theme-button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                startTheme(
+                    button.dataset.theme
+                );
+
+            }
+        );
+
+    });
+
+
+function startTheme(themeName) {
+
+    currentTheme = themeName;
+
+    themeSelection.hidden = true;
+
+    sortingGame.hidden = false;
+
+    createSortingGame();
+
+}
+
+
+/* ========================================
+   CREATE GAME
+======================================== */
+
 function createSortingGame() {
 
-    colorItems.innerHTML = "";
+    objectItems.innerHTML = "";
 
-    colorBins.innerHTML = "";
+    objectBins.innerHTML = "";
 
     selectedItem = null;
 
     sortedCount = 0;
 
-    sortingNextButton.hidden =
-        true;
+    const theme =
+        themes[currentTheme];
 
-
-    const level =
-        levels[currentLevel];
-
-
-    sortingLevelDisplay.textContent =
-        `Level ${currentLevel + 1}`;
-
-
-    const items = [];
-
-
-    level.colors.forEach(
-        (colorName) => {
-
-            for (
-                let i = 0;
-                i < level.copies;
-                i++
-            ) {
-
-                items.push(
-                    colorName
-                );
-            }
-        }
-    );
-
+    sortingThemeDisplay.textContent =
+        theme.name;
 
     totalItems =
-        items.length;
-
+        theme.items.length;
 
     sortedCounter.textContent =
         `0 of ${totalItems}`;
 
-
     setSortingMessage(
-        "Choose a color."
+        "Choose an object."
     );
 
+
+    /* Shuffle objects */
 
     const shuffledItems =
-        shuffle(items);
+        shuffle(theme.items);
 
 
-    shuffledItems.forEach(
-        (colorName) => {
+    shuffledItems.forEach(item => {
 
-            createColorItem(
-                colorName
-            );
-        }
-    );
+        createObjectItem(item);
+
+    });
 
 
-    level.colors.forEach(
-        (colorName) => {
+    /* Create category boxes */
 
-            createColorBin(
-                colorName
-            );
-        }
-    );
+    Object.entries(
+        theme.categories
+    ).forEach(([categoryName, category]) => {
+
+        createObjectBin(
+            categoryName,
+            category
+        );
+
+    });
+
 }
 
 
-function createColorItem(colorName) {
+/* ========================================
+   CREATE OBJECT
+======================================== */
+
+function createObjectItem(item) {
 
     const button =
-        document.createElement(
-            "button"
-        );
-
+        document.createElement("button");
 
     button.classList.add(
-        "color-item"
+        "object-item"
     );
 
+    button.dataset.category =
+        item.category;
 
-    button.dataset.color =
-        colorName;
+    button.dataset.name =
+        item.name;
 
+    button.innerHTML = `
+        <span class="object-emoji">
+            ${item.emoji}
+        </span>
 
-    button.style.backgroundColor =
-        colors[colorName].hex;
-
+        <span class="object-name">
+            ${item.name}
+        </span>
+    `;
 
     button.setAttribute(
         "aria-label",
-        `${colors[colorName].label} color`
+        item.name
     );
-
 
     button.addEventListener(
         "click",
-        () => selectColor(button)
+        () => selectObject(button)
     );
 
+    objectItems.appendChild(button);
 
-    colorItems.appendChild(
-        button
-    );
 }
 
 
-function selectColor(button) {
+/* ========================================
+   SELECT OBJECT
+======================================== */
+
+function selectObject(button) {
 
     if (button.disabled) {
         return;
     }
-
 
     if (selectedItem) {
 
         selectedItem.classList.remove(
             "selected"
         );
+
     }
 
-
     selectedItem = button;
-
 
     button.classList.add(
         "selected"
     );
 
-
     setSortingMessage(
-        `${colors[button.dataset.color].label} selected. Choose the matching box.`
+        `${button.dataset.name} selected. Where does it belong?`
     );
+
 }
 
 
-function createColorBin(colorName) {
+/* ========================================
+   CREATE CATEGORY BOX
+======================================== */
+
+function createObjectBin(
+    categoryName,
+    category
+) {
 
     const bin =
-        document.createElement(
-            "button"
-        );
-
+        document.createElement("button");
 
     bin.classList.add(
-        "color-bin"
+        "object-bin"
     );
 
-
-    bin.dataset.color =
-        colorName;
-
+    bin.dataset.category =
+        categoryName;
 
     bin.innerHTML = `
-        <span
-            class="bin-color"
-            style="background-color: ${colors[colorName].hex}">
+
+        <span class="bin-emoji">
+            ${category.emoji}
         </span>
 
         <span class="bin-name">
-            ${colors[colorName].label}
+            ${category.name}
         </span>
-    `;
 
+    `;
 
     bin.setAttribute(
         "aria-label",
-        `${colors[colorName].label} sorting box`
+        `${category.name} category`
     );
-
 
     bin.addEventListener(
         "click",
-        () => sortItem(bin)
+        () => sortObject(bin)
     );
 
+    objectBins.appendChild(bin);
 
-    colorBins.appendChild(
-        bin
-    );
 }
 
 
-function sortItem(bin) {
+/* ========================================
+   SORT OBJECT
+======================================== */
+
+function sortObject(bin) {
 
     if (!selectedItem) {
 
         setSortingMessage(
-            "Choose a color first.",
+            "Choose an object first.",
             "message-retry"
         );
 
         return;
+
     }
 
+    const selectedCategory =
+        selectedItem.dataset.category;
 
-    const selectedColor =
-        selectedItem.dataset.color;
-
-
-    const binColor =
-        bin.dataset.color;
+    const binCategory =
+        bin.dataset.category;
 
 
     if (
-        selectedColor ===
-        binColor
+        selectedCategory ===
+        binCategory
     ) {
 
-        handleCorrectSort(
-            bin
-        );
+        handleCorrectSort(bin);
 
     } else {
 
-        handleIncorrectSort(
-            bin
-        );
+        handleIncorrectSort(bin);
+
     }
+
 }
 
 
+/* ========================================
+   CONFETTI
+======================================== */
+
+function launchConfetti(amount = 20) {
+
+    const colors = [
+        "#e85d5d",
+        "#5576e6",
+        "#f2c84b",
+        "#55a86b",
+        "#b565a7",
+        "#f28c52"
+    ];
+
+    for (let i = 0; i < amount; i++) {
+
+        const confetti =
+            document.createElement("div");
+
+        confetti.classList.add(
+            "confetti-piece"
+        );
+
+        confetti.style.left = "50%";
+        confetti.style.top = "50%";
+
+        confetti.style.backgroundColor =
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ];
+
+        const x =
+            (Math.random() - 0.5) * 500;
+
+        const y =
+            (Math.random() - 0.5) * 400;
+
+        const rotation =
+            Math.random() * 720;
+
+        confetti.style.setProperty(
+            "--x",
+            `${x}px`
+        );
+
+        confetti.style.setProperty(
+            "--y",
+            `${y}px`
+        );
+
+        confetti.style.setProperty(
+            "--rotation",
+            `${rotation}deg`
+        );
+
+        document.body.appendChild(
+            confetti
+        );
+
+
+        setTimeout(() => {
+
+            confetti.remove();
+
+        }, 1000);
+
+    }
+
+}
+
+
+/* ========================================
+   CORRECT
+======================================== */
+
 function handleCorrectSort(bin) {
+
+    const objectName =
+        selectedItem.dataset.name;
 
     selectedItem.classList.add(
         "sorted"
     );
 
-
     selectedItem.disabled = true;
-
 
     selectedItem.classList.remove(
         "selected"
     );
 
-
     bin.classList.add(
         "correct-bin"
     );
 
-
     sortedCount++;
-
 
     sortedCounter.textContent =
         `${sortedCount} of ${totalItems}`;
 
-
     setSortingMessage(
-        "Great job! That's the right color.",
+        `Great job! ${objectName} belongs there.`,
         "message-success"
     );
+
+
+    /* Small confetti celebration */
+
+    launchConfetti(20);
 
 
     selectedItem = null;
@@ -458,9 +662,15 @@ function handleCorrectSort(bin) {
     ) {
 
         levelComplete();
+
     }
+
 }
 
+
+/* ========================================
+   INCORRECT
+======================================== */
 
 function handleIncorrectSort(bin) {
 
@@ -468,9 +678,8 @@ function handleIncorrectSort(bin) {
         "incorrect-bin"
     );
 
-
     setSortingMessage(
-        "Not quite — try another box.",
+        "Not quite. Try the other group.",
         "message-retry"
     );
 
@@ -482,65 +691,60 @@ function handleIncorrectSort(bin) {
         );
 
     }, 700);
+
 }
 
+
+/* ========================================
+   COMPLETE
+======================================== */
 
 function levelComplete() {
 
-    if (
-        currentLevel <
-        levels.length - 1
-    ) {
-
-        setSortingMessage(
-            `Wonderful! Level ${currentLevel + 1} complete!`,
-            "message-success"
-        );
+    setSortingMessage(
+        `Wonderful! You sorted all the ${themes[currentTheme].name.toLowerCase()}!`,
+        "message-success"
+    );
 
 
-        sortingNextButton.hidden =
-            false;
+    /* Bigger celebration for finishing */
 
-    } else {
+    setTimeout(() => {
 
-        setSortingMessage(
-            "Amazing! You completed every color level!",
-            "message-success"
-        );
+        launchConfetti(45);
 
+    }, 350);
 
-        sortingNextButton.hidden =
-            true;
-    }
 }
 
 
-sortingNextButton.addEventListener(
-    "click",
-    () => {
-
-        if (
-            currentLevel <
-            levels.length - 1
-        ) {
-
-            currentLevel++;
-
-            createSortingGame();
-        }
-    }
-);
-
+/* ========================================
+   START OVER
+======================================== */
 
 sortingRestartButton.addEventListener(
     "click",
     () => {
 
-        currentLevel = 0;
-
         createSortingGame();
+
     }
 );
 
 
-createSortingGame();
+/* ========================================
+   CHANGE THEME
+======================================== */
+
+changeThemeButton.addEventListener(
+    "click",
+    () => {
+
+        sortingGame.hidden = true;
+
+        themeSelection.hidden = false;
+
+        currentTheme = null;
+
+    }
+);

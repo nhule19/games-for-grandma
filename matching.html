@@ -26,41 +26,68 @@
 
         <div class="status-bar">
 
-            <p id="levelDisplay" class="level-display">
-                Level 1
-            </p>
+    <p id="levelDisplay" class="level-display">
+        Level 1
+    </p>
 
+    <div class="stats">
 
-            <div class="stats">
+        <div class="stat">
 
-                <div class="stat">
+            <span class="stat-label">
+                Pairs found
+            </span>
 
-                    <span class="stat-label">
-                        Pairs found
-                    </span>
-
-                    <span
-                        id="pairsCounter"
-                        class="stat-value"
-                        aria-live="polite"
-                    >
-                        0 of 3
-                    </span>
-
-                </div>
-
-            </div>
+            <span
+                id="pairsCounter"
+                class="stat-value"
+                aria-live="polite"
+            >
+                0 of 3
+            </span>
 
         </div>
 
+    </div>
 
+</div>
+
+
+<!-- Progress Bar -->
+<div class="progress-section">
+
+    <div class="progress-info">
+        <span>Progress</span>
+        <span id="progressPercent">0%</span>
+    </div>
+
+    <div
+        id="progressBar"
+        class="progress-track"
+        role="progressbar"
+        aria-label="Level progress"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+    >
         <div
-            id="message"
-            class="message"
-            aria-live="polite"
-        >
-            Choose a card to begin.
+            id="progressFill"
+            class="progress-fill">
         </div>
+    </div>
+
+</div>
+
+
+<div
+    id="message"
+    class="message"
+    aria-live="polite"
+>
+    <span id="messageText">
+        Choose a card to begin.
+    </span>
+</div>
 
 
         <div
