@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Simple Sudoku | Mindful Games</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="progress.js" defer></script>
+    <script src="recommendations.js" defer></script>
+    <script src="simplesudoku.js" defer></script>
+</head>
+
+<body>
+    <main class="game-container cat-game">
+
+        <a href="index.html" class="back-link">
+            ← Back to Games
+        </a>
+
+        <h1>Simple Sudoku</h1>
+
+        <p class="cat-subtitle">
+            Find a cozy spot for every snowflake!
+        </p>
+
+        <div class="cat-status">
+            <span id="catLevel">Level 1</span>
+            <span id="catCount">0 / 3 snowflakes</span>
+        </div>
+
+        <section class="cat-instructions">
+            <h2 id="catLevelName">Beginner</h2>
+            <p id="catRules">Place one snowflake in each row.</p>
+        </section>
+
+        <div
+            id="catBoard"
+            class="cat-board"
+            role="group"
+            aria-label="Simple Sudoku puzzle board"
+        ></div>
+
+        <div class="cat-tools">
+            <button id="catMode" class="cat-tool active" type="button">
+                ❄️ Place Snowflake
+            </button>
+
+            <button id="markMode" class="cat-tool" type="button">
+                ✕ Mark Empty
+            </button>
+        </div>
+
+        <p
+            id="catMessage"
+            class="cat-message"
+            aria-live="polite"
+        >
+            Tap a square to place a snowflake.
+        </p>
+
+        <!-- LEVEL COMPLETION SUMMARY -->
+        <section
+            id="levelProgress"
+            class="level-progress"
+            aria-live="polite"
+            hidden
+        >
+            <h2>🎉 Level Complete!</h2>
+
+            <p class="progress-subtitle">
+                Wonderful job! Here's how you did.
+            </p>
+
+            <div class="progress-stats">
+                <div class="progress-stat">
+                    <strong id="progressTime">0 seconds</strong>
+                    <span>Time</span>
+                </div>
+
+                <div class="progress-stat">
+                    <strong id="progressHints">0</strong>
+                    <span>Hints Used</span>
+                </div>
+
+                <div class="progress-stat">
+                    <strong id="progressMistakes">0</strong>
+                    <span>Mistakes</span>
+                </div>
+
+                <div class="progress-stat">
+                    <strong id="progressTotal">0</strong>
+                    <span>Total Puzzles</span>
+                </div>
+            </div>
+
+            <p id="progressSavedMessage">✓ Progress saved!</p>
+
+            <!-- STAGE 2 RECOMMENDATION -->
+            <div
+                id="levelRecommendation"
+                class="level-recommendation"
+                hidden
+            >
+                <h3>✨ Your Recommended Level</h3>
+
+                <h4 id="recommendationTitle">
+                    Keep Practicing!
+                </h4>
+
+                <p id="recommendationMessage">
+                    Keep enjoying your puzzles!
+                </p>
+
+                <p id="recommendationLevel">
+                    Recommended: Level 1
+                </p>
+
+                <button id="recommendationButton" type="button">
+                    Play Recommended Level →
+                </button>
+            </div>
+        </section>
+
+        <div class="cat-actions">
+            <button id="catHint" type="button">💡 Hint</button>
+            <button id="catRestart" type="button">↻ Restart</button>
+            <button id="catNext" type="button" hidden>Next Level →</button>
+        </div>
+
+        <button
+            id="catStartOver"
+            class="cat-start-over"
+            type="button"
+        >
+            Start From Level 1
+        </button>
+
+    </main>
+</body>
+</html>

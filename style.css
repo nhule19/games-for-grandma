@@ -933,3 +933,397 @@ h1{
   }
 
 }
+
+
+
+
+
+
+/* ==========================================
+   CAT PUZZLE
+========================================== */
+
+.cat-game {
+  max-width: 650px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.cat-subtitle {
+  font-size: 1.15rem;
+  color: #64748b;
+}
+
+.cat-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 22px 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.cat-instructions {
+  background: #f1f5ff;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.cat-instructions h2 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+}
+
+.cat-instructions p {
+  margin: 0;
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.cat-board {
+  --cat-size: 4;
+  display: grid;
+  grid-template-columns:
+    repeat(var(--cat-size), minmax(0, 1fr));
+  gap: 4px;
+  width: min(100%, 420px);
+  margin: 0 auto 24px;
+  padding: 5px;
+  background: #64748b;
+  border-radius: 12px;
+}
+
+.cat-square {
+  aspect-ratio: 1;
+  min-width: 0;
+  border: 0;
+  border-radius: 5px;
+  font-size: clamp(1.6rem, 6vw, 2.5rem);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #334155;
+  transition: transform 0.12s ease;
+}
+
+.cat-square:hover {
+  filter: brightness(0.96);
+}
+
+.cat-square:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: -3px;
+}
+
+.cat-tools,
+.cat-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0;
+}
+
+.cat-tool,
+.cat-actions button,
+.cat-start-over {
+  padding: 13px 18px;
+  border: 2px solid #dbe3f0;
+  border-radius: 12px;
+  background: white;
+  color: #334155;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cat-tool.active {
+  background: #dbeafe;
+  border-color: #60a5fa;
+}
+
+.cat-message {
+  background: #f0fdf4;
+  border-radius: 14px;
+  padding: 16px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  min-height: 60px;
+  line-height: 1.5;
+}
+
+.cat-actions button {
+  background: #e9e9ff;
+}
+
+.cat-actions button:hover,
+.cat-start-over:hover {
+  filter: brightness(0.95);
+}
+
+.cat-actions button[hidden] {
+  display: none;
+}
+
+.cat-start-over {
+  margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+  .cat-game {
+    padding: 16px;
+  }
+
+  .cat-status {
+    font-size: 0.95rem;
+  }
+
+  .cat-tool,
+  .cat-actions button {
+    font-size: 0.95rem;
+    padding: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cat-square {
+    transition: none;
+  }
+}
+
+
+/* ==========================================
+   SIMPLE SUDOKU - LEVEL PROGRESS SUMMARY
+========================================== */
+
+.level-progress {
+    background: #f0fdf4;
+    border: 2px solid #bbf7d0;
+    border-radius: 18px;
+
+    padding: 24px;
+    margin: 20px auto;
+
+    max-width: 500px;
+    text-align: center;
+}
+
+/* Hide progress until a level is completed */
+
+.level-progress[hidden] {
+    display: none;
+}
+
+/* Progress heading */
+
+.level-progress h2 {
+    font-size: 1.6rem;
+    color: #166534;
+    margin: 0 0 10px;
+}
+
+/* Subtitle */
+
+.progress-subtitle {
+    font-size: 1.05rem;
+    color: #475569;
+    margin-bottom: 20px;
+}
+
+/* Statistics grid */
+
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+/* Individual statistic card */
+
+.progress-stat {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 10px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Statistic number */
+
+.progress-stat strong {
+    font-size: 1.35rem;
+    color: #334155;
+}
+
+/* Statistic label */
+
+.progress-stat span {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+/* Save confirmation */
+
+#progressSavedMessage {
+    margin: 18px 0 0;
+    color: #166534;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Mobile adjustments */
+
+@media (max-width: 400px) {
+    .level-progress {
+        padding: 16px;
+    }
+
+    .progress-stat {
+        padding: 14px 8px;
+    }
+}
+
+
+/* ==========================================
+   SIMPLE SUDOKU - STAGE 1 PROGRESS
+========================================== */
+
+.level-progress {
+    background: #f0fdf4;
+    border: 2px solid #bbf7d0;
+    border-radius: 18px;
+    padding: 24px;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: center;
+}
+
+.level-progress[hidden],
+.level-recommendation[hidden] {
+    display: none;
+}
+
+.level-progress h2 {
+    font-size: 1.6rem;
+    color: #166534;
+    margin: 0 0 10px;
+}
+
+.progress-subtitle {
+    font-size: 1.05rem;
+    color: #475569;
+    margin-bottom: 20px;
+}
+
+.progress-stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.progress-stat {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 18px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.progress-stat strong {
+    font-size: 1.35rem;
+    color: #334155;
+}
+
+.progress-stat span {
+    font-size: 0.95rem;
+    color: #64748b;
+}
+
+#progressSavedMessage {
+    margin: 18px 0 0;
+    color: #166534;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* ==========================================
+   SIMPLE SUDOKU - STAGE 2 RECOMMENDATION
+========================================== */
+
+.level-recommendation {
+    margin-top: 24px;
+    padding: 22px;
+    background: #f1f5ff;
+    border: 2px solid #dbeafe;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.level-recommendation h3 {
+    color: #475569;
+    font-size: 1.15rem;
+    margin: 0 0 14px;
+}
+
+#recommendationTitle {
+    color: #334155;
+    font-size: 1.3rem;
+    margin: 0 0 10px;
+}
+
+#recommendationMessage {
+    color: #475569;
+    font-size: 1rem;
+    line-height: 1.7;
+    margin: 0 0 16px;
+}
+
+#recommendationLevel {
+    font-weight: 700;
+    color: #334155;
+    font-size: 1.05rem;
+    margin-bottom: 18px;
+}
+
+#recommendationButton {
+    background: #dbeafe;
+    color: #1e3a8a;
+    border: 2px solid #bfdbfe;
+    border-radius: 12px;
+    padding: 13px 20px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#recommendationButton:hover {
+    background: #bfdbfe;
+}
+
+#recommendationButton:focus-visible {
+    outline: 3px solid #2563eb;
+    outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+    .level-progress,
+    .level-recommendation {
+        padding: 16px;
+    }
+
+    .progress-stat {
+        padding: 14px 8px;
+    }
+
+    #recommendationButton {
+        width: 100%;
+    }
+}
+
